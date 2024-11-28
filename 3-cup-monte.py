@@ -7,12 +7,20 @@ def shufflist(og_list):
     return og_list
 
 def player_guess():
-
+    acceptable_range = list(range(0,4))
+    within_range = False
     guess = ''
 
-    while guess not in ['1', '2', '3']: # <-- error-handling
+    while guess.isdigit() == False or within_range == False: # <-- error-handling
         guess = input('Pick a number! 1, 2, or 3: ')
-
+        if guess.isdigit() == False:
+            print('Sorry, that\'s not a number...')
+        if guess.isdigit():
+            if int(guess) in acceptable_range:
+                within_range = True
+            else:
+                print('You are out of acceptable range...')
+                within_range = False
     return int(guess) # <-- 'input()' always returns a str, so we convert to int here...
 
 def check_guess(guess_list, guess):
