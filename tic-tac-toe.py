@@ -75,7 +75,7 @@ def player_symbol(player_idx):
     choose_ur_char = ['X','x','O','o']
     allowable = False
 
-    while allowable == False:
+    while not allowable:
         players['symbol'][player_idx] = input(f"{players['player'][player_idx]}, which symbol would you like to use (enter X/x or O/o)? ")
         if players['symbol'][player_idx].isascii():
             if players['symbol'][player_idx] in choose_ur_char:
@@ -104,9 +104,9 @@ def player_move(player_idx):
     print('     |')
     print(r'    \|/''\n')
     game_board(tictac)
-    
+
     while True:
-        move = input(f"{players['player'][player_idx]}! Pick an available spot on the board using the corresponding numbers (1-9): ")
+        move = input(f"{players['player'][player_idx]} ( {players['symbol'][player_idx]} ): Pick an available spot on the board using the corresponding numbers (1-9) -- ")
         if not move.isdigit():
             print('Sorry, that\'s not a number...')
         elif move not in num_pad.values():
@@ -129,12 +129,12 @@ def board_position(player_idx):
             time.sleep(2)
             return False
     except KeyError:
-            print('Invalid board position.')
-            return False
+        print('Invalid board position.')
+        return False
 
 
 def win_condition(tictac,players,player_idx):
-    
+
     px_name = players['player'][player_idx]
     px_sym = players['symbol'][player_idx]
 
@@ -159,29 +159,28 @@ def win_condition(tictac,players,player_idx):
 
 
 def reset():
-    global move_ct, tictac, player_idx, game_on
+    global move_ct, tictac, player_idx
 
     move_ct = 0
     clear_screen()
     tictac = {key: ' ' for key in tictac}
     player_idx = (player_idx + 1) %2
-    print(f'{players['player'][player_idx]} goes first, this time!')
+    print(f"{players['player'][player_idx]} goes first, this time!")
     time.sleep(2)
-    game_on = True
     tic_tac_toe()
 
 
 def play_again():
-    global game_on
+
 
     yes = ['Yes','yes','Y','y']
     no = ['No','no','N','n']
     replay = ''
     correct_response = False
 
-    while replay.isascii() == False or correct_response == False:
+    while not replay.isascii() or not correct_response:
         replay = input('Would you like to play again ([y]es, [n]o)? ')
-        if replay.isascii() == False:
+        if not replay.isascii():
             print('Sorry, that\'s not a word/letter...')
         if replay.isascii():
             if replay in yes or no:
@@ -189,7 +188,7 @@ def play_again():
             else:
                 print('You must answer, "[y]es, [n]o."')
                 correct_response = False
-    
+
     if replay in yes:
         print('Let\'s do it!\nOne moment...')
         time.sleep(3)
@@ -200,6 +199,7 @@ def play_again():
         return False
 
 
+## Main game logic:
 def tic_tac_toe():
     global game_on, move_ct, player_idx, move
 
@@ -247,5 +247,5 @@ print('\n')
 game_board(tictac)
 print('\n')
 
-## Game logic:
+## Game begins:
 tic_tac_toe()
