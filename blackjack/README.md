@@ -29,20 +29,6 @@ conda activate blackjack
 pip install -r requirements.txt
 ```
 
-## Alt. Run Instructions:
-
-If you want to run Python code from a GitHub repository without cloning it locally, you can use Google Colab, which supports running code directly from GitHub.
-
-**Steps:**
-
-1. Open [Google Colab](https://colab.research.google.com/).
-
-2. Click **File** > **Open notebook**.
-
-3. Select the **GitHub** tab and enter the URL: [https://github.com/dynamic-stall/python-portfolio/blackjack](https://github.com/dynamic-stall/python-portfolio/blackjack).
-
-This will allow you to run Python code directly in the cloud without worrying about local setup.
-
 ## Project Structure
 ```
 python-portfolio/
