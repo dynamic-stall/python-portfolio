@@ -4,14 +4,16 @@ from typing import List
 
 
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
+
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
+
 values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 
             'Nine':9, 'Ten':10, 'Jack':11, 'Queen':12, 'King':13, 'Ace':14}
 
 
 class Card:
     
-    def __init__(self,suit,rank):
+    def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
         self.value = values[rank]
@@ -36,7 +38,7 @@ class Deck:
 
 class Player:
     
-    def __init__(self,name):
+    def __init__(self, name):
         self.name = name
         self.all_cards: List[Card] = []
         
@@ -67,7 +69,7 @@ def choose_ur_char():
     player1 = Player(player_select.pop())
     player2 = Player(player_select.pop())
 
-    print(f'Player 1 (P1): {player1.name}')
+    print(f'\nPlayer 1 (P1): {player1.name}')
     print(f'Player 2 (P1): {player2.name}')
     time.sleep(1.5)
 
@@ -96,7 +98,7 @@ def card_count():
 def round_sleep():
     print('The round number is announced at the start of each round, followed by a brief pause.')
     time.sleep(1.5)
-    print('These games go on for hundreds of turns...')
+    print('\nThese games go on for hundreds of turns...')
     time.sleep(1.5)
 
     while True:
@@ -119,7 +121,7 @@ def round_sleep():
 ## Dramatic introduction:
 print('The fictional world\'s most fearsome card-users...')
 time.sleep(1)
-print('Pit against one another in a game of simulated WAR.')
+print('\nPit against one another in a game of simulated WAR.')
 time.sleep(2)
 
 ## Setting up the game:
