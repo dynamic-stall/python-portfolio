@@ -34,14 +34,14 @@ pip install -r requirements.txt
 python-portfolio/
 └── blackjack/
     ├── __init__.py
-    ├── constants.py      # Game constants (cards, chips)
-    ├── card_components.py# Card, Deck, and Hand classes
-    ├── players.py       # Player and Dealer classes
-    ├── account.py       # Account management for betting
-    ├── game.py         # Main game logic
-    ├── main.py         # Entry point
-    ├── README.md       # This file
-    └── requirements.txt # Required packages
+    ├── constants.py        # Game constants (cards, chips)
+    ├── card_components.py  # Card, Deck, and Hand classes
+    ├── players.py          # Player and Dealer classes
+    ├── account.py          # Account management for betting
+    ├── game.py             # Main game logic
+    ├── main.py             # Entry point
+    ├── README.md           # (This file)
+    └── requirements.txt    # Required packages
 ```
 
 ## How to Play
