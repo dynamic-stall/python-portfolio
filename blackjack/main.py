@@ -1,7 +1,14 @@
 from .game import BlackjackGame
+import time
 
 def main():
-    game = BlackjackGame(input("Please enter your name: "))
+    print('Welcome to Blackjack!')
+    time.sleep(1.5)
+    print('Let\'s play a round or three... ;)')
+    time.sleep(1.5)
+    game = BlackjackGame(input('May I have your name? '))
+    print('It\'s a pleasure to meet you! "Yoroshiku," as they say in Japanese...')
+    time.sleep(3)
     game.play()
 
 if __name__ == "__main__":

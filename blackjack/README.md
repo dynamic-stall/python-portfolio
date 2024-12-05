@@ -46,9 +46,9 @@ python-portfolio/
 
 ## How to Play
 
-1. Run the game:
+1. Run the game as a module with the ```-m``` flag from the directory containing the _blackjack_ folder (i.e., from _python-portfolio_):
 ```bash
-python3 main.py
+python3 -m blackjack.main
 ```
 
 2. Enter your name when prompted

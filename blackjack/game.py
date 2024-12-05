@@ -65,7 +65,7 @@ class BlackjackGame:
             self.dealer_hand.print_hand(hide_first=True)
             
             if self.player_hand.value == 21:
-                print("Blackjack!")
+                print("BLACKJACK!")
                 return
             
             if self.player_hand.value > 21:
@@ -133,7 +133,7 @@ class BlackjackGame:
         while True:
             # Start new round
             print("\n" + "=" * 50)
-            print(f"Welcome to Blackjack, {self.player.name}!")
+            print(f"Grab a seat, {self.player.name}!")
             
             self.place_bet()
             self.deal_initial_cards()
