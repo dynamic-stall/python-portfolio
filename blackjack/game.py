@@ -2,6 +2,7 @@ from .constants import chips
 from .card_components import Deck, Hand
 from .players import Player, Dealer
 from .account import Account
+import time
 
 
 class BlackjackGame:
@@ -28,12 +29,11 @@ class BlackjackGame:
                 for i in range(0, len(bet_parts), 2):
                     count = int(bet_parts[i])
                     color = bet_parts[i + 1]
-                    if color in chips:
-                        total_bet += count * chips[color]
-                    else:
+                    if color not in chips:
                         print("Invalid chip color!")
+                    else:
+                        total_bet += count * chips[color]
                         break
-                
                 if total_bet <= float(self.player_account.get_balance().replace('$', '')):
                     self.current_bet = total_bet
                     self.player_account.withdraw(total_bet)
@@ -128,27 +128,51 @@ class BlackjackGame:
             print("Push!")
             self.player_account.deposit(self.current_bet)
             return None
-    
+
+    def play_again(self):
+        yes = ['Yes', 'yes', 'Y', 'y']
+        no = ['No', 'no', 'N', 'n']
+        correct_response = False
+
+        while not correct_response:
+            replay = input('Would you like to play again ([y]es, [n]o)? ')
+
+            if not replay.isascii():
+                print('Sorry, that\'s not a word/letter...')
+                continue
+
+            if replay in yes:
+                print('Let me give you a hand...')
+                time.sleep(1.5)
+                return True
+            elif replay in no:
+                print(f"\nFinal balance: {self.player_account.get_balance()}")
+                print('Hope you had fun! Until next time...')
+                time.sleep(1)
+                return False
+            else:
+                print('You must answer, "[y]es, [n]o."')
+
     def play(self):
-        while True:
+        game_on = True
+
+        while game_on:
             # Start new round
             print("\n" + "=" * 50)
             print(f"Grab a seat, {self.player.name}!")
-            
+
             self.place_bet()
             self.deal_initial_cards()
-            
+
             self.player_turn()
             if self.player_hand.value <= 21:
                 self.dealer_turn()
             self.determine_winner()
-            
-            play_again = input("\nWould you like to play again? (yes/no): ").lower()
-            if play_again != 'yes':
-                print(f"\nFinal balance: {self.player_account.get_balance()}")
-                print("Thanks for playing!")
+
+            game_on = self.play_again()
+            if not game_on:
                 break
-            
+
             # Reset deck if running low
             if len(self.deck.all_cards) < 15:
                 self.deck = Deck()
