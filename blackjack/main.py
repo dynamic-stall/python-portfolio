@@ -7,7 +7,7 @@ def main():
     print('Let\'s play a round or three... ;)')
     time.sleep(1.5)
     game = BlackjackGame(input('May I have your name? '))
-    print('It\'s a pleasure to meet you! "Yoroshiku," as they say in Japanese...')
+    print('It\'s a pleasure to meet you! "Dōzo yoroshiku," as they say in Japanese...')
     time.sleep(3)
     game.play()
 
