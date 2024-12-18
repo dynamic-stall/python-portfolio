@@ -17,4 +17,4 @@ while True:
     else:
         break
 
-tv_off(n)
+tv_off(int(n))
