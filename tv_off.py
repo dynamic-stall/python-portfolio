@@ -8,6 +8,13 @@ def tv_off(n):
     
     print(f"MUST{''.join(gnx(n))}RD{'!' * round(n/10)}")
 
-n = input("Somebody gotta do it... but how many times?? ")
+while True:
+    try:
+        n = float(input("Somebody gotta do it... but how many times?? "))
+    except ValueError:
+        print("A numeric entry is required...")
+        continue
+    else:
+        break
 
 tv_off(n)
