@@ -10,4 +10,4 @@ def tv_off(n):
 
 n = input("Somebody gotta do it... but how many times?? ")
 
-tv_off(n)
+tv_off(int(n))
