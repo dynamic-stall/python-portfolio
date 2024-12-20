@@ -13,7 +13,7 @@ A simple command-line blackjack game implemented in Python.
 
 1. Clone the python-portfolio repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/dynamic-stall/python-portfolio.git
 cd python-portfolio/blackjack
 ```
 
