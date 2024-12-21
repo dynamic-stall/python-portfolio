@@ -14,7 +14,7 @@ A simple command-line blackjack game implemented in Python.
 1. Clone the python-portfolio repository:
 ```bash
 git clone https://github.com/dynamic-stall/python-portfolio.git
-cd python-portfolio/blackjack
+cd python-portfolio
 ```
 
 2. Create and activate a new conda environment (optional but recommended):
@@ -26,7 +26,7 @@ conda activate blackjack
 
 3. Install required packages:
 ```bash
-pip install -r requirements.txt
+pip install -r blackjack/requirements.txt
 ```
 
 ## Project Structure
