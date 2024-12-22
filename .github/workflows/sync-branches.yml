@@ -14,11 +14,11 @@ jobs:
 
       - name: Check Main Branch Status
         run: |
-          git fetch origin/main
-          local_ref=$(git rev-parse HEAD)
-          remote_ref=$(git rev-parse origin)
+          local_ref=$(git rev-parse main)
+          remote_ref=$(git rev-parse origin/main)
           if [ "$local_ref" != "$remote_ref" ]; then
             echo "HEAD is behind origin/main. Merging..."
+            git fetch origin/main
             git merge origin/main -m "Actions workflow: auto-merge origin/main -> main"
           fi
 
