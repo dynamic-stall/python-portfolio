@@ -1,0 +1,31 @@
+name: Sync Branches
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Configure Git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          
+      - name: Merge main into dev
+        run: |
+          git switch dev
+          git merge main
+          #git push origin dev
+          
+      - name: Merge main into test
+        run: |
+          git switch test
+          git merge main
+          #git push origin test
