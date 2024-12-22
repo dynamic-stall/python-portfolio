@@ -14,12 +14,12 @@ jobs:
 
       - name: Check Main Branch Status
         run: |
-          git fetch origin/main
+          git fetch origin
           local_ref=$(git rev-parse HEAD)
-          remote_ref=$(git rev-parse origin/main)
+          remote_ref=$(git rev-parse origin)
           if [ "$local_ref" != "$remote_ref" ]; then
             echo "HEAD is behind origin/main. Merging..."
-            git merge origin/main -m "Actions workflow: auto-merge origin/main -> main"
+            git merge origin -m "Actions workflow: auto-merge origin -> main"
           fi
 
       - name: Handle Merge Conflicts
@@ -34,9 +34,9 @@ jobs:
       - name: Merge Main into Dev
         run: |
           git switch dev
-          git merge origin/main -m "Actions workflow: auto-merge main -> dev"
+          git merge origin -m "Actions workflow: auto-merge main -> dev"
 
       - name: Merge Main into Test
         run: |
           git switch test
-          git merge origin/main -m "Actions workflow: auto-merge main -> test"
+          git merge origin -m "Actions workflow: auto-merge main -> test"
