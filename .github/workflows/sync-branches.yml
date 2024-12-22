@@ -1,31 +1,42 @@
-name: Sync Branches
+name: Sync Dev and Test Branches
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  sync-branches:
+  merge-branches:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Configure Git
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check Main Branch Status
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'github-actions@github.com'
-          
-      - name: Merge main into dev
+          git fetch origin/main
+          local_ref=$(git rev-parse HEAD)
+          remote_ref=$(git rev-parse origin)
+          if [ "$local_ref" != "$remote_ref" ]; then
+            echo "HEAD is behind origin/main. Merging..."
+            git merge origin/main -m "Actions workflow: auto-merge origin/main -> main"
+          fi
+
+      - name: Handle Merge Conflicts
+        run: |
+          if [ -n "$(git status --short | grep 'U')" ]; then
+            echo "Merge conflicts found. Waiting for resolution..."
+            while [ -n "$(git status --short | grep 'U')" ]; do
+              sleep 5
+            done
+          fi
+
+      - name: Merge Main into Dev
         run: |
           git switch dev
-          git merge main
-          #git push origin dev
-          
-      - name: Merge main into test
+          git merge origin/main -m "Actions workflow: auto-merge main -> dev"
+
+      - name: Merge Main into Test
         run: |
           git switch test
-          git merge main
-          #git push origin test
+          git merge origin/main -m "Actions workflow: auto-merge main -> test"
